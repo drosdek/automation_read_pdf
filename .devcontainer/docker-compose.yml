@@ -1,17 +1,16 @@
-version: '3'
+version: '3.8'
 services:
   app:
-    image: node:14
+    build:
+      context: ..
+    ports:
+      - "3000:3000"
     volumes:
       - .:/app
-    working_dir: /app
-    command: bash -c "npm install && npm run dev"
-    environment:
-      NODE_PATH: ./src
-    ports:
-      - 3000:3000
     depends_on:
       - db
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
   db:
     image: postgres:15-alpine
     restart: unless-stopped
@@ -22,4 +21,4 @@ services:
     ports:
       - 5432:5432
 volumes:
-  postgres_data:
+  postgres_data: 
