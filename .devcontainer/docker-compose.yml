@@ -1,0 +1,25 @@
+version: '3'
+services:
+  app:
+    image: node:14
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: bash -c "npm install && npm run dev"
+    environment:
+      NODE_PATH: ./src
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    env_file:
+      - postgres.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+volumes:
+  postgres_data:
