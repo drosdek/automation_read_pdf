@@ -5,7 +5,7 @@ const upload = require("../middleware/upload");
 
 router.post(
   "/extract-fatura-data",
-  upload.array("files"),
+  upload.single("file"),
   FaturaController.extractFaturaData
 );
 

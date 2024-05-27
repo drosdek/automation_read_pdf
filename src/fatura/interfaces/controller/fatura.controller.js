@@ -5,18 +5,14 @@ const FaturaRepository = require("../../infra/repositories/fatura.repository");
 
 class FaturaController {
   static async extractFaturaData(req, res, next) {
-    if (!req.files || req.files.length === 0) {
+    if (!req.file) {
       return next("Nenhum arquivo enviado");
     }
     try {
-      const faturas = [];
-      for (const file of req.files) {
-        const pdfPath = path.resolve(file.path);
-        const fatura = await ExtractFaturaDataUseCase.execute(pdfPath);
-        faturas.push(fatura);
-        fs.unlinkSync(pdfPath);
-      }
-      res.json(faturas);
+      const pdfPath = path.resolve(req.file.path);
+      const fatura = await ExtractFaturaDataUseCase.execute(pdfPath);
+      fs.unlinkSync(pdfPath);
+      res.json(fatura);
     } catch (error) {
       next(error);
     }
