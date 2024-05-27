@@ -1,11 +1,11 @@
 const Fatura = require("../domain/entities/fatura.entity");
 const ExtractorService = require("../domain/services/extractor.service");
-const PDFExtractorWrapper = require("../infra/pdfExtractor/PDFExtractor");
+const PDFExtractor = require("../infra/pdfExtractor/PDFExtractor");
 const FaturaRepository = require("../infra/repositories/fatura.repository");
 
 class ExtractFaturaDataUseCase {
   static async execute(pdfPath) {
-    const pdfContent = await PDFExtractorWrapper.extractContent(pdfPath);
+    const pdfContent = await PDFExtractor.extractContent(pdfPath);
     const faturaData = ExtractorService.extractFaturaData(pdfContent);
     const fatura = new Fatura(faturaData);
 
