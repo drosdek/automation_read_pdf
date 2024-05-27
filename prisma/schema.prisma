@@ -19,20 +19,20 @@ model FaturaCemig {
   numeroInstalacao String
   mesReferencia String
   vencimento DateTime
-  energiaEletricaQuantidade String
-  energiaEletricaValor String
-  energiaEletricaSCEESemICMSQuantidade String?
-  energiaEletricaSCEESemICMSValor String?
-  energiaEletricaSCEEIsentaQuantidade String?
-  energiaEletricaSCEEIsentaValor String?
-  energiaCompensadaGDIQuantidade String?
-  energiaCompensadaGDIValor String?
-  energiaInjetadaHFPQuantidade String?
-  energiaInjetadaHFPValor String?
-  energiaCompSemICMSQuantidade String?
-  energiaCompSemICMSValor String?
-  contribIlumPublicaMunicipalValor String
-  valorPagar String
+  energiaEletricaQuantidade Float
+  energiaEletricaValor Float
+  energiaEletricaSCEESemICMSQuantidade Float?
+  energiaEletricaSCEESemICMSValor Float?
+  energiaEletricaSCEEIsentaQuantidade Float?
+  energiaEletricaSCEEIsentaValor Float?
+  energiaCompensadaGDIQuantidade Float?
+  energiaCompensadaGDIValor Float?
+  energiaInjetadaHFPQuantidade Float?
+  energiaInjetadaHFPValor Float?
+  energiaCompSemICMSQuantidade Float?
+  energiaCompSemICMSValor Float?
+  contribIlumPublicaMunicipalValor Float
+  valorPagar Float
   createdAt DateTime @default(now())
 
   @@unique([numeroCliente, mesReferencia])

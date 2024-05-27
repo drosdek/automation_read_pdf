@@ -7,7 +7,6 @@ function errorHandler(err, req, res, next) {
   }
 
   if (err.name === "PrismaClientKnownRequestError") {
-    console.log('message',err.message);
     return res.status(400).json({ message: err.message });
   }
 

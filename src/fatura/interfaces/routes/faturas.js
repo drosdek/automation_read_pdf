@@ -9,11 +9,9 @@ router.post(
   FaturaController.extractFaturaData
 );
 
-router.get("/fatura/:id", FaturaController.getById);
-router.get("/faturas/:numeroCliente", FaturaController.getAllByNumeroCliente);
-router.get(
-  "/faturas/filter/:numeroCliente",
-  FaturaController.filterByNumeroCliente
-);
+router.get("/", FaturaController.getAll);
+router.get("/byId/:id", FaturaController.getById);
+router.get("/byCliente/:numeroCliente", FaturaController.getAllByNumeroCliente);
+router.get("/filter/:numeroCliente", FaturaController.filterByNumeroCliente);
 
 module.exports = router;

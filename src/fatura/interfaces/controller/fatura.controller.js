@@ -60,6 +60,15 @@ class FaturaController {
       next(error);
     }
   }
+
+  static async getAll(req, res, next) {
+    try {
+      const faturas = await FaturaRepository.getAll();
+      res.json(faturas);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = FaturaController;

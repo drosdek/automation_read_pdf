@@ -61,43 +61,66 @@ class ExtractorService {
         dadosTradados.mesReferencia = faturaData["Referente a"];
 
       if (faturaData["Vencimento"])
-        dadosTradados.vencimento = new Date(faturaData["Vencimento"]);
+        var [day, month, year] = faturaData["Vencimento"].split("/");
+      dadosTradados.vencimento = new Date(`${year}-${month}-${day}`);
 
       if (faturaData["Valor a pagar (R$)"])
-        dadosTradados.valorPagar = faturaData["Valor a pagar (R$)"];
+        dadosTradados.valorPagar = parseFloat(
+          faturaData["Valor a pagar (R$)"].replace(",", ".")
+        );
 
       if (faturaData["Energia Elétrica"]) {
-        dadosTradados.energiaEletricaQuantidade =
-          faturaData["Energia Elétrica"][1];
-        dadosTradados.energiaEletricaValor = faturaData["Energia Elétrica"][3];
+        dadosTradados.energiaEletricaQuantidade = parseFloat(
+          faturaData["Energia Elétrica"][1].replace(",", ".")
+        );
+        dadosTradados.energiaEletricaValor = parseFloat(
+          faturaData["Energia Elétrica"][3].replace(",", ".")
+        );
       }
       if (faturaData["Energia SCEE s/ ICMS"]) {
-        dadosTradados.energiaEletricaSCEESemICMSQuantidade =
-          faturaData["Energia SCEE s/ ICMS"][3];
-        dadosTradados.energiaEletricaSCEESemICMSValor =
-          faturaData["Energia SCEE s/ ICMS"][5];
+        dadosTradados.energiaEletricaSCEESemICMSQuantidade = parseFloat(
+          faturaData["Energia SCEE s/ ICMS"][3].replace(",", ".")
+        );
+        dadosTradados.energiaEletricaSCEESemICMSValor = parseFloat(
+          faturaData["Energia SCEE s/ ICMS"][5].replace(",", ".")
+        );
       }
       if (faturaData["Energia compensada GD I"]) {
-        dadosTradados.energiaCompensadaGDIQuantidade =
-          faturaData["Energia compensada GD I"][3];
-        dadosTradados.energiaCompensadaGDIValor =
-          faturaData["Energia compensada GD I"][5];
+        dadosTradados.energiaCompensadaGDIQuantidade = parseFloat(
+          faturaData["Energia compensada GD I"][3].replace(",", ".")
+        );
+        dadosTradados.energiaCompensadaGDIValor = parseFloat(
+          faturaData["Energia compensada GD I"][5].replace(",", ".")
+        );
       }
       if (faturaData["Contrib Ilum Publica Municipal"]) {
-        dadosTradados.contribIlumPublicaMunicipalValor =
-          faturaData["Contrib Ilum Publica Municipal"][3];
+        dadosTradados.contribIlumPublicaMunicipalValor = parseFloat(
+          faturaData["Contrib Ilum Publica Municipal"][3].replace(",", ".")
+        );
       }
       if (faturaData["Energia injetada HFP"]) {
-        dadosTradados.energiaInjetadaHFPQuantidade =
-          faturaData["Energia injetada HFP"][2];
-        dadosTradados.energiaInjetadaHFPValor =
-          faturaData["Energia injetada HFP"][4];
+        dadosTradados.energiaInjetadaHFPQuantidade = parseFloat(
+          faturaData["Energia injetada HFP"][2].replace(",", ".")
+        );
+        dadosTradados.energiaInjetadaHFPValor = parseFloat(
+          faturaData["Energia injetada HFP"][4].replace(",", ".")
+        );
+      }
+      if (faturaData["Energia SCEE ISENTA"]) {
+        dadosTradados.energiaEletricaSCEEIsentaQuantidade = parseFloat(
+          faturaData["Energia SCEE ISENTA"][2].replace(",", ".")
+        );
+        dadosTradados.energiaEletricaSCEEIsentaValor = parseFloat(
+          faturaData["Energia SCEE ISENTA"][4].replace(",", ".")
+        );
       }
       if (faturaData["En comp. s/ ICMS"]) {
-        dadosTradados.energiaCompSemICMSQuantidade =
-          faturaData["En comp. s/ ICMS"][3];
-        dadosTradados.energiaCompSemICMSValor =
-          faturaData["En comp. s/ ICMS"][5];
+        dadosTradados.energiaCompSemICMSQuantidade = parseFloat(
+          faturaData["En comp. s/ ICMS"][3].replace(",", ".")
+        );
+        dadosTradados.energiaCompSemICMSValor = parseFloat(
+          faturaData["En comp. s/ ICMS"][5].replace(",", ".")
+        );
       }
     }
 
