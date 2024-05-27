@@ -29,9 +29,35 @@ class FaturaRepository {
       });
     } catch (err) {
       if (err instanceof Prisma.PrismaClientKnownRequestError) {
-        return err.code + err.meta.target
+        return err.code + err.meta.target;
       }
     }
+  }
+
+  static async getById(id) {
+    return prisma.faturaCemig.findUnique({
+      where: { id },
+    });
+  }
+
+  static async getAllByNumeroCliente(numeroCliente) {
+    return prisma.faturaCemig.findMany({
+      where: { numeroCliente },
+    });
+  }
+
+  static async filterByNumeroCliente(numeroCliente, filter) {
+    const where = { numeroCliente };
+
+    Object.keys(filter).forEach((key) => {
+      if (filter[key]) {
+        where[key] = filter[key];
+      }
+    });
+
+    return prisma.faturaCemig.findMany({
+      where,
+    });
   }
 }
 
