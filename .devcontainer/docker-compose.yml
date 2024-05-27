@@ -7,7 +7,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - <PATH>:/usr/src/app
+      - /home/drosdek/development/automation_read_pdf:/usr/src/app
     depends_on:
       - db
     environment:

@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model FaturaCemig {
+  id Int @id @default(autoincrement())
+  numeroCliente String
+  numeroInstalacao String
+  mesReferencia String
+  vencimento DateTime
+  energiaEletricaQuantidade String
+  energiaEletricaValor String
+  energiaEletricaSCEESemICMSQuantidade String?
+  energiaEletricaSCEESemICMSValor String?
+  energiaEletricaSCEEIsentaQuantidade String?
+  energiaEletricaSCEEIsentaValor String?
+  energiaCompensadaGDIQuantidade String?
+  energiaCompensadaGDIValor String?
+  energiaInjetadaHFPQuantidade String?
+  energiaInjetadaHFPValor String?
+  energiaCompSemICMSQuantidade String?
+  energiaCompSemICMSValor String?
+  contribIlumPublicaMunicipalValor String
+  valorPagar String
+  createdAt DateTime @default(now())
+
+  @@unique([numeroCliente, mesReferencia])
+}
